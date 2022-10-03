@@ -1,0 +1,420 @@
+﻿@model RegistrationPortal.Models.EmployeeDetailsForm
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Registration Form</h2>
+
+
+@using (Html.BeginForm("Create", "EmployeeDetails", FormMethod.Post, new { enctype = "multipart/form-data", id = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Employee Details</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="step1">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", id = "FirstName" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", id = "LastName" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.DropDownListFor(model => model.Company, ViewBag.CompanyList as IEnumerable<SelectListItem>, "-- select --", new { htmlAttributes = new { @class = "form-control", id = "Company" } })
+                    @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", id = "Age" } })
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control", id = "Salary" } })
+                    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control datepicker", id = "DateOfJoining" } })
+                    @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", id = "MobileNumber" } })
+                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "Email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="step2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Bank, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.DropDownListFor(model => model.Bank, ViewBag.BankList as SelectList, "-- select --", new { htmlAttributes = new { @class = "form-control", id = "Bank" } })
+                    @Html.ValidationMessageFor(model => model.Bank, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IFSCCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IFSCCode, new { htmlAttributes = new { @class = "form-control", id = "IFSCCode" } })
+                    @Html.ValidationMessageFor(model => model.IFSCCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control", id = "AccountNumber" } })
+                    @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PFNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PFNumber, new { htmlAttributes = new { @class = "form-control", id = "PFNumber" } })
+                    @Html.ValidationMessageFor(model => model.PFNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UANNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UANNumber, new { htmlAttributes = new { @class = "form-control", id = "UANNumber" } })
+                    @Html.ValidationMessageFor(model => model.UANNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="step3">
+            <div id="userPhoto" class="form-group">
+                @Html.LabelFor(model => model.UserPhotoFile, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(model => model.UserPhotoFile, new { type = "file", @class = "form-control", id = "UserPhotoFile" })
+                    <span id="spnDocMsg" class="text-danger" style="display: none;"></span>
+                    @Html.ValidationMessageFor(model => model.UserPhotoFile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DocumentUploadFile, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(model => model.DocumentUploadFile, new { type = "file", multiple = "multiple", @class = "form-control", id = "DocumentUploadFile" })
+                    @Html.ValidationMessageFor(model => model.DocumentUploadFile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="btnSubmit" type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 text-center">
+            <div id="btnS1">
+                <button id="btnS1Next">Next</button>
+            </div>
+            <div id="btnS2">
+                <button id="btnS2Prev">Previous</button>
+                <button id="btnS2Next">Next</button>
+            </div>
+            <div id="btnS3">
+                <button id="btnS3Prev">Previous</button>
+            </div>
+        </div>
+
+    </div>
+}
+
+@*<div>
+        @Html.ActionLink("Back to Index", "Index")
+    </div>*@
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-10:+10"
+            });
+            function isEmail(email) {
+                var regex = /^([a-zA-Z0-9_.+-])+\@@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                return regex.test(email);
+            }
+
+            $("#step2").hide();
+            $("#step3").hide();
+            $("#btnS2").hide();
+            $("#btnS3").hide();
+
+            //$("#UserPhotoFile").change(function () {
+            //    // Get uploaded file extension
+            //    var extension = $(this).val().split('.').pop().toLowerCase();
+            //    // Create array with the files extensions that we wish to upload
+            //    var validFileExtensions = ['jpeg', 'png'];
+            //    //Check file extension in the array.if -1 that means the file extension is not in the list.
+            //    if ($.inArray(extension, validFileExtensions) == -1) {
+            //        $('#spnDocMsg').text("Sorry!! Upload only jpeg and png file").show();
+            //        // Clear fileuload control selected file
+            //        $(this).replaceWith($(this).val('').clone(true));
+            //        //Disable Submit Button
+            //        //$('#btnSubmit').prop('disabled', true);
+            //    }
+            //    else {
+            //        // Check and restrict the file size to 32 KB.
+            //        if ($(this).get(0).files[0].size > (32768)) {
+            //            $('#spnDocMsg').text("Sorry!! Max allowed file size is 32 kb").show();
+            //            // Clear fileuload control selected file
+            //            $(this).replaceWith($(this).val('').clone(true));
+            //            //Disable Submit Button
+            //            //$('#btnSubmit').prop('disabled', true);
+            //        }
+            //        else {
+            //            //Clear and Hide message span
+            //            $('#spnDocMsg').text('').hide();
+            //            //Enable Submit Button
+            //            $('#btnSubmit').prop('disabled', false);
+            //        }
+            //    }
+
+            //});
+
+            //$("input").keypress(function () {
+            //    //var firstName = $("#FirstName").val();
+            //    //if (firstName == "" || firstName == undefined) {
+            //    //    alert("FirstName required")
+            //    //    return false;
+            //    //}
+            //    $("#FirstName").validate();
+            //});
+
+
+            //$("input").keypress(function (){
+            //    $(this).validate();
+            //});
+
+            //$("#btnS1Next").click(function (event) {
+
+
+            //});
+
+            //$.validator.unobtrusive.parse($("#form"));
+            //$('#userPhoto').validate({
+            //    rules: { inputimage: { required: true, extension: "png|jpe?g", filesize: 4194304 } },
+            //    messages: { inputimage: "File must be JPG or PNG, less than 4MB" }
+            //});
+
+
+
+
+
+            //function onSubmit(e) {
+            //    $("#frm1").validate(); // this will validate the form and show the validation messages
+            //    if ($("#frm1").valid()) {
+            //        $("#frm1").submit(); // submits the form
+            //    }
+            //    return false;//prevent default submit of form by returning false.
+            //    //also e.preventDefault() can be used.
+            //}
+            const emailError = document.querySelector("#FirstName + span.error");
+
+
+            $("#btnS1Next").click(function (event) {
+                event.preventDefault();
+
+                $("span").remove();
+
+                if ($("#FirstName").val() == "" || $("#FirstName").val() == undefined) {
+                    $("#FirstName").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#LastName").val() == "" || $("#LastName").val() == undefined) {
+                    $("#LastName").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#Company").val() == "" || $("#Company").val() == undefined) {
+                    $("#Company").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#Age").val() == "" || $("#Age").val() == undefined) {
+                    $("#Age").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#Salary").val() == "" || $("#Salary").val() == undefined) {
+                    $("#Salary").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#DateOfJoining").val() == "" || $("#DateOfJoining").val() == undefined) {
+                    $("#DateOfJoining").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#MobileNumber").val() == "" || $("#MobileNumber").val() == undefined) {
+                    $("#MobileNumber").after('<span class="text-danger">This field is required.</span>');
+                }
+                var mobileNum = $("#MobileNumber").val();
+                var validateMobNum = /^[0-9]{10}$/;
+                if (validateMobNum.test(mobileNum) && mobileNum.length == 10) {
+
+                }
+                else {
+                    $("#MobileNumber").after('<span class="text-danger">Give valid mobile number.</span>');
+                }
+                if ($("#Email").val() == "" || $("#Email").val() == undefined) {
+                    $("#Email").after('<span class="text-danger">This field is required.</span>');
+                }
+                if (!isEmail($("#Email").val())) {
+                    $("#Email").after('<span class="text-danger">Give valid email.</span>');
+                }
+                else {
+                    $("span").remove();
+                    $("#step1").hide();
+                    $("#step2").show();
+                    $("#step3").hide();
+                    $("#btnS1").hide();
+                    $("#btnS2").show();
+                    $("#btnS3").hide();
+                }
+                /*if (!$validator.unobtrusive.parse($("#step1")).valid()) {*/
+                //}
+
+            });
+
+            $("#btnS2Prev").click(function (event) {
+                event.preventDefault();
+                $("#step1").show();
+                $("#step2").hide();
+                $("#step3").hide();
+                $("#btnS1").show();
+                $("#btnS2").hide();
+                $("#btnS3").hide();
+            });
+
+            $("#btnS2Next").click(function (event) {
+                event.preventDefault();
+
+                $("span").remove();
+
+                if ($("#Bank").val() == "" || $("#Bank").val() == undefined) {
+                    $("#Bank").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#IFSCCode").val() == "" || $("#IFSCCode").val() == undefined) {
+                    $("#IFSCCode").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#AccountNumber").val() == "" || $("#AccountNumber").val() == undefined) {
+                    $("#AccountNumber").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#PFNumber").val() == "" || $("#PFNumber").val() == undefined) {
+                    $("#PFNumber").after('<span class="text-danger">This field is required.</span>');
+                }
+                if ($("#UANNumber").val() == "" || $("#UANNumber").val() == undefined) {
+                    $("#UANNumber").after('<span class="text-danger">This field is required.</span>');
+                }
+                else {
+                    $("#step1").hide();
+                    $("#step2").hide();
+                    $("#step3").show();
+                    $("#btnS1").hide();
+                    $("#btnS2").hide();
+                    $("#btnS3").show();
+                }
+            });
+
+            $("#UserPhotoFile").change(function (e) {
+                const name = e.target.files[0].name;
+                const searchTerm = '.';
+                const indexOfSearchTerm = name.indexOf(searchTerm);
+                const extension_arr = ['jpg', 'png'];
+                const extension = name.substr(indexOfSearchTerm + 1);
+
+                if (jQuery.inArray(extension, extension_arr) == -1) {
+                    $("#UserPhotoFile").after('<span class="text-danger"> Please upload a valid format </span>');
+                    $('#UserPhotoFile').val('');
+                    return false;
+                }                
+                else {
+                    $("span").remove();
+                }
+            });
+            $("#DocumentUploadFile").change(function (e) {
+
+                for (var i = 0; i < e.target.files.length; i++) {
+                    const name = e.target.files[i].name;
+                    const searchTerm = '.';
+                    const indexOfSearchTerm = name.indexOf(searchTerm);
+                    const extension_arr = ['pdf', 'ppt'];
+                    const extension = name.substr(indexOfSearchTerm + 1);
+
+                    if (jQuery.inArray(extension, extension_arr) == -1) {
+                        $("#DocumentUploadFile").after('<span class="text-danger"> Please upload a valid format </span>');
+                        $('#DocumentUploadFile').val('');
+                        return false;
+                    }
+                    else {
+                        $("span").remove();
+                    }
+                }
+            });
+
+            $("#btnS3Prev").click(function (event) {
+                event.preventDefault();
+                $("#step1").hide();
+                $("#step2").show();
+                $("#step3").hide();
+                $("#btnS1").hide();
+                $("#btnS2").show();
+                $("#btnS3").hide();
+            });
+        });
+    </script>
+}
